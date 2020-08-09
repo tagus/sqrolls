@@ -1,0 +1,23 @@
+{
+    "env": {
+        "es6": true,
+		"node": true,
+        "jest": true
+	},
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+    "rules": {
+        "indent": [ "error", "tab" ],
+        "linebreak-style": [ "error", "unix" ],
+        "quotes": [ "error", "single" ],
+        "semi": [ "error", "always" ],
+        "no-console": ["error", { "allow": ["debug", "warn", "error"] }]
+    }
+}

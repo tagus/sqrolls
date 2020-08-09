@@ -1,0 +1,22 @@
+{
+	"name": "squid",
+	"version": "0.0.1",
+	"description": "sql builder library",
+	"main": "src/index.js",
+	"author": "Sugat Poudel",
+	"license": "MIT",
+	"scripts": {
+		"build": "npx tsc",
+		"test": "jest"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/jest": "^26.0.9",
+		"@typescript-eslint/eslint-plugin": "^3.8.0",
+		"@typescript-eslint/parser": "^3.8.0",
+		"eslint": "^7.6.0",
+		"jest": "^26.2.2",
+		"ts-jest": "^26.1.4",
+		"typescript": "^3.9.7"
+	}
+}
