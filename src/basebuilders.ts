@@ -46,7 +46,7 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 * @param field The field name
 	 * @param check The conditional check
 	 */
-	whereIsEquals(field: string, arg: unknown) : T {
+	whereIsEqual(field: string, arg: unknown) : T {
 		this.predicates.push(pr.isEqual(field, arg));
 		return this.getThis();
 	}
@@ -57,9 +57,9 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 * @param field The field name
 	 * @param check The conditional check
 	 */
-	whereIsEqualsIf(field: string, arg: unknown, check: boolean) : T {
+	whereIsEqualIf(field: string, arg: unknown, check: boolean) : T {
 		if (check) {
-			this.whereIsEquals(field, arg);
+			this.whereIsEqual(field, arg);
 		}
 		return this.getThis();
 	}

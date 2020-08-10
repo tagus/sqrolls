@@ -5,8 +5,8 @@ describe('select builder', () => {
 		const qb = Select.builder()
 			.select('id', 'name', 'email')
 			.from('users')
-			.whereIsEquals('name', 'frank')
-			.whereIsEquals('email', 'warthog@wolfcola.com');
+			.whereIsEqual('name', 'frank')
+			.whereIsEqual('email', 'warthog@wolfcola.com');
 
 		const stmt = 'SELECT id, name, email FROM users WHERE name = ? AND email = ?';
 		const args = ['frank', 'warthog@wolfcola.com'];
@@ -35,8 +35,8 @@ describe('select builder', () => {
 		const qb = Select.builder()
 			.select('id', 'name', 'email')
 			.from('users')
-			.whereIsEqualsIf('name', 'frank', false)
-			.whereIsEquals('email', 'warthog@wolfcola.com');
+			.whereIsEqualIf('name', 'frank', false)
+			.whereIsEqual('email', 'warthog@wolfcola.com');
 
 		const stmt = 'SELECT id, name, email FROM users WHERE email = ?';
 		const args = ['warthog@wolfcola.com'];

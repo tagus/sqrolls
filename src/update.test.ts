@@ -20,7 +20,7 @@ describe('update builder', () => {
 			.setTable('users')
 			.set('name', 'frank')
 			.set('email', 'warthog@wolfcola.com')
-			.whereIsEquals('id', 1);
+			.whereIsEqual('id', 1);
 
 		const stmt = 'UPDATE users SET name = ?, email = ? WHERE id = ?';
 		const args = ['frank', 'warthog@wolfcola.com', 1];
@@ -36,7 +36,7 @@ describe('update builder', () => {
 			.setTable('users')
 			.set('name', 'frank')
 			.set('email', 'warthog@wolfcola.com')
-			.whereIsEquals('id', 1)
+			.whereIsEqual('id', 1)
 			.whereIsNullIf('archived_at', false);
 
 		const stmt = 'UPDATE users SET name = ?, email = ? WHERE id = ?';

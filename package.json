@@ -1,9 +1,9 @@
 {
-	"name": "squid",
+	"name": "sqroll",
 	"version": "0.0.1",
 	"description": "sql builder library",
-	"main": "src/index.js",
-	"author": "Sugat Poudel",
+	"main": "./dist/index.js",
+	"author": "tagus",
 	"license": "MIT",
 	"scripts": {
 		"build": "npx tsc",
