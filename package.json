@@ -2,14 +2,23 @@
 	"name": "sqrolls",
 	"version": "0.0.2",
 	"description": "sql builder library",
+	"keywords": ["sqlite3", "mysql", "query builder"],
 	"main": "./dist/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sugatpoudel/sqrolls.git"
+	},
 	"author": "tagus",
 	"license": "MIT",
-	"publishConfig": { "registry": "https://npm.pkg.github.com/" },
+	"files": ["dist/**/*"],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
 	"scripts": {
-		"build": "npx tsc",
+		"build": "tsc",
 		"test": "jest",
-		"publish": "npm publish"
+		"prepublishOnly": "npm test",
+		"prepare": "npm run build"
 	},
 	"dependencies": {},
 	"devDependencies": {
