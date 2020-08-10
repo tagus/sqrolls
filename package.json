@@ -2,7 +2,11 @@
 	"name": "sqrolls",
 	"version": "0.0.2",
 	"description": "sql builder library",
-	"keywords": ["sqlite3", "mysql", "query builder"],
+	"keywords": [
+		"sqlite3",
+		"mysql",
+		"query builder"
+	],
 	"main": "./dist/index.js",
 	"repository": {
 		"type": "git",
@@ -10,7 +14,9 @@
 	},
 	"author": "tagus",
 	"license": "MIT",
-	"files": ["dist/**/*"],
+	"files": [
+		"dist/**/*"
+	],
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/"
 	},
