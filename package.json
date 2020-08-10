@@ -1,10 +1,11 @@
 {
 	"name": "sqrolls",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "sql builder library",
 	"main": "./dist/index.js",
 	"author": "tagus",
 	"license": "MIT",
+	"publishConfig": { "registry": "https://npm.pkg.github.com/" },
 	"scripts": {
 		"build": "npx tsc",
 		"test": "jest",
