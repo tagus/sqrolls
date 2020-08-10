@@ -1,4 +1,4 @@
-# sqroll
+# sqrolls
 
 A simple sql-like expression builder that makes it easy to build *sql-like* expressions
 using a hierarchical builder pattern. The resulting statements should work for most sql
