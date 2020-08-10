@@ -1,5 +1,5 @@
 {
-	"name": "sqroll",
+	"name": "sqrolls",
 	"version": "0.0.1",
 	"description": "sql builder library",
 	"main": "./dist/index.js",
