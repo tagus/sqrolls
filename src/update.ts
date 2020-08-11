@@ -30,6 +30,20 @@ class Update extends PredicateBaseBuilder<Update> {
 	}
 
 	/**
+	 * Sets a field if the conditional check is true.
+	 *
+	 * @param field The field name
+	 * @param arg The value to set
+	 * @param check The conditional check
+	 */
+	setIf(field: string, arg: unknown, check: boolean) : Update {
+		if (check) {
+			return this.set(field, arg);
+		}
+		return this;
+	}
+
+	/**
 	 * Builds the final select statement.
 	 */
 	toSQL() : [string, unknown[]] {

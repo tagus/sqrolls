@@ -46,4 +46,18 @@ describe('update builder', () => {
 		expect(_stmt).toEqual(stmt);
 		expect(_args).toEqual(args);
 	});
+
+	it('does not include a set if the conditional check is false', () => {
+		const qb = Update.builder()
+			.setTable('users')
+			.set('name', 'frank')
+			.setIf('email', 'warthog@wolfcola.com', false);
+
+		const stmt = 'UPDATE users SET name = ?';
+		const args = ['frank'];
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toEqual(args);
+	});
 });
