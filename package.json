@@ -1,6 +1,6 @@
 {
 	"name": "sqrolls",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "sql builder library",
 	"keywords": [
 		"sqlite3",
@@ -17,9 +17,6 @@
 	"files": [
 		"dist/**/*"
 	],
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/"
-	},
 	"scripts": {
 		"build": "tsc",
 		"test": "jest",

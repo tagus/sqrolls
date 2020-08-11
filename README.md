@@ -17,10 +17,10 @@ sql expression and the arguments that can be given as inputs directly to a db co
 ```sql
 CREATE TABLE users (
 	id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL,
+	name TEXT NOT NULL,
+	email TEXT NOT NULL,
 	archived_at NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
