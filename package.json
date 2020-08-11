@@ -20,8 +20,8 @@
 	"scripts": {
 		"build": "tsc",
 		"test": "jest",
-		"prepublishOnly": "npm test",
-		"prepare": "npm run build"
+		"prepublishOnly": "yarn test",
+		"prepare": "yarn build"
 	},
 	"dependencies": {},
 	"devDependencies": {
