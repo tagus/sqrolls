@@ -1,5 +1,7 @@
 # sqrolls
 
+![sqrolls tests](https://github.com/sugatpoudel/sqrolls/workflows/sqrolls%20tests/badge.svg)
+
 A simple sql-like expression builder that makes it easy to build *sql-like* expressions
 using a hierarchical builder pattern. The resulting statements should work for most sql
 databases however it was primarily written to support working with sqlite3.
