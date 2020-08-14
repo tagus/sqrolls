@@ -1,4 +1,4 @@
-name: sqroll pkg deploy
+name: sqrolls pkg deploy
 
 on:
   release:
