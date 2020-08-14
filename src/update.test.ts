@@ -61,17 +61,12 @@ describe('update builder', () => {
 		expect(_args).toEqual(args);
 	});
 
-	it('builds valid updates for empty updates', () => {
+	it('throws an error for empty update', () => {
 		const qb = Update.builder()
 			.setTable('users')
 			.setIf('name', 'frank', false)
 			.whereIsEqual('id', 4);
 
-		const stmt = 'UPDATE users WHERE id = ?';
-		const args = [4];
-
-		const [_stmt, _args] = qb.toSQL();
-		expect(_stmt).toEqual(stmt);
-		expect(_args).toEqual(args);
+		expect(qb.toSQL).toThrow();
 	});
 });

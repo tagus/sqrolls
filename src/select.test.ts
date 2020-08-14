@@ -45,4 +45,30 @@ describe('select builder', () => {
 		expect(_stmt).toEqual(stmt);
 		expect(_args).toEqual(args);
 	});
+
+	it('includes order by desc clause when specified', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.orderBy('email', true);
+
+		const stmt = 'SELECT * FROM users ORDER BY email DESC';
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toHaveLength(0);
+	});
+
+	it('includes order by asc clause when specified', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.orderBy('email', false);
+
+		const stmt = 'SELECT * FROM users ORDER BY email ASC';
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toHaveLength(0);
+	});
 });

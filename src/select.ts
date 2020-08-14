@@ -5,6 +5,7 @@ import { PredicateBaseBuilder } from './basebuilders';
  */
 class Select extends PredicateBaseBuilder<Select> {
 	private columns: string[];
+	private orderByCol?: [string, boolean];
 
 	private constructor() {
 		super();
@@ -35,6 +36,17 @@ class Select extends PredicateBaseBuilder<Select> {
 	}
 
 	/**
+	 * Specifies the column to sort the queried row by
+	 *
+	 * @param col The column to order by
+	 * @param isDescending Whether to sort in descending order
+	 */
+	orderBy(col: string, isDescending=false) : Select {
+		this.orderByCol = [col, isDescending];
+		return this;
+	}
+
+	/**
 	 * Builds the final select statement.
 	 */
 	toSQL() : [string, unknown[]] {
@@ -44,6 +56,10 @@ class Select extends PredicateBaseBuilder<Select> {
 			stmt += ' WHERE ' + this.predicates.map(p => p.clause).join(' AND ');
 			const _args = this.predicates.filter(p => p.hasArg()).map(p => p.arg);
 			args.push(..._args);
+		}
+		if (this.orderByCol) {
+			const isDescending = this.orderByCol[1];
+			stmt += ' ORDER BY ' + this.orderByCol[0] + (isDescending ? ' DESC' : ' ASC');
 		}
 		return [stmt, args];
 	}

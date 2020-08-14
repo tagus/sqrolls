@@ -47,11 +47,14 @@ class Update extends PredicateBaseBuilder<Update> {
 	 * Builds the final select statement.
 	 */
 	toSQL() : [string, unknown[]] {
-		let stmt = 'UPDATE ' + this.table;
-		if (this.updates.length > 0) {
-			stmt += ' SET ' + this.updates.map(u => `${u.field} = ?`).join(', ');
+		if (this.updates.length === 0) {
+			throw new Error('empty update statement');
 		}
+
+		let stmt = 'UPDATE ' + this.table + ' SET ';
+		stmt += this.updates.map(u => `${u.field} = ?`).join(', ');
 		const args = this.updates.map(u => u.arg);
+
 		if (this.predicates.length > 0) {
 			stmt += ' WHERE ' + this.predicates.map(p => p.clause).join(' AND ');
 			const _args = this.predicates.filter(p => p.hasArg()).map(p => p.arg);
