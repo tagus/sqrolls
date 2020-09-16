@@ -86,6 +86,19 @@ describe('select builder', () => {
 		expect(_args).toHaveLength(0);
 	});
 
+	it('does not include limit when check is false', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.limitIf(10, false);
+
+		const stmt = 'SELECT * FROM users';
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toHaveLength(0);
+	});
+
 	it('includes offset clause when specified', () => {
 		const qb = Select.builder()
 			.select('*')
@@ -93,6 +106,19 @@ describe('select builder', () => {
 			.offset(10);
 
 		const stmt = 'SELECT * FROM users OFFSET 10';
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toHaveLength(0);
+	});
+
+	it('does not include offset clause when check is false', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.offsetIf(10, false);
+
+		const stmt = 'SELECT * FROM users';
 
 		const [_stmt, _args] = qb.toSQL();
 		expect(_stmt).toEqual(stmt);

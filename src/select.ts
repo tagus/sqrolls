@@ -69,6 +69,32 @@ class Select extends PredicateBaseBuilder<Select> {
 	}
 
 	/**
+	 * Sets a limit on the select query if predicate is true
+	 *
+	 * @param val The result set limit
+	 * @param check The conditional check
+	 */
+	limitIf(val: number, check: boolean) : Select {
+		if (check) {
+			this.limit(val);
+		}
+		return this;
+	}
+
+	/**
+	 * Sets an offset on the select query
+	 *
+	 * @param val The result set offset
+	 * @param check The conditional check
+	 */
+	offsetIf(val: number, check: boolean) : Select {
+		if (check) {
+			this.offset(val);
+		}
+		return this;
+	}
+
+	/**
 	 * Builds the final select statement.
 	 */
 	toSQL() : [string, unknown[]] {
