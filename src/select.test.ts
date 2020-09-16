@@ -6,9 +6,10 @@ describe('select builder', () => {
 			.select('id', 'name', 'email')
 			.from('users')
 			.whereIsEqual('name', 'frank')
-			.whereIsEqual('email', 'warthog@wolfcola.com');
+			.whereIsEqual('email', 'warthog@wolfcola.com')
+			.limit(5);
 
-		const stmt = 'SELECT id, name, email FROM users WHERE name = ? AND email = ?';
+		const stmt = 'SELECT id, name, email FROM users WHERE name = ? AND email = ? LIMIT 5';
 		const args = ['frank', 'warthog@wolfcola.com'];
 
 		const [_stmt, _args] = qb.toSQL();
@@ -66,6 +67,32 @@ describe('select builder', () => {
 			.orderBy('email', false);
 
 		const stmt = 'SELECT * FROM users ORDER BY email ASC';
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toHaveLength(0);
+	});
+
+	it('includes limit clause when specified', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.limit(10);
+
+		const stmt = 'SELECT * FROM users LIMIT 10';
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toHaveLength(0);
+	});
+
+	it('includes offset clause when specified', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.offset(10);
+
+		const stmt = 'SELECT * FROM users OFFSET 10';
 
 		const [_stmt, _args] = qb.toSQL();
 		expect(_stmt).toEqual(stmt);

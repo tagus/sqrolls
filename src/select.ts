@@ -6,6 +6,8 @@ import { PredicateBaseBuilder } from './basebuilders';
 class Select extends PredicateBaseBuilder<Select> {
 	private columns: string[];
 	private orderByCol?: [string, boolean];
+	private _limit?: number;
+	private _offset?: number;
 
 	private constructor() {
 		super();
@@ -47,6 +49,26 @@ class Select extends PredicateBaseBuilder<Select> {
 	}
 
 	/**
+	 * Sets a limit on the select query
+	 *
+	 * @param val The result set limit
+	 */
+	limit(val: number) : Select {
+		this._limit = val;
+		return this;
+	}
+
+	/**
+	 * Sets an offset on the select query
+	 *
+	 * @param val The result set offset
+	 */
+	offset(val: number) : Select {
+		this._offset = val;
+		return this;
+	}
+
+	/**
 	 * Builds the final select statement.
 	 */
 	toSQL() : [string, unknown[]] {
@@ -60,6 +82,12 @@ class Select extends PredicateBaseBuilder<Select> {
 		if (this.orderByCol) {
 			const isDescending = this.orderByCol[1];
 			stmt += ' ORDER BY ' + this.orderByCol[0] + (isDescending ? ' DESC' : ' ASC');
+		}
+		if (this._limit) {
+			stmt += ' LIMIT ' + this._limit;
+		}
+		if (this._offset) {
+			stmt += ' OFFSET ' + this._offset;
 		}
 		return [stmt, args];
 	}
