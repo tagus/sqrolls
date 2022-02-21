@@ -3,3 +3,4 @@ node_modules
 dist
 sqrolls-*.tgz
 .keys
+yarn-error.log
