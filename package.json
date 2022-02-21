@@ -1,6 +1,6 @@
 {
 	"name": "sqrolls",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"description": "sql builder library",
 	"keywords": [
 		"sqlite3",
