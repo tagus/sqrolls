@@ -56,6 +56,20 @@ const [ stmt, args ] = qb.toSQL();
 // args: []
 ```
 
+Selecting all users with names that start with "Frank".
+
+```js
+const qb = Select.builder()
+	.select('*')
+	.from('users')
+	.whereIsLike('name', 'Frank%')
+
+const [ stmt, args ] = qb.toSQL();
+
+// stmt: 'SELECT * FROM users WHERE name LIKE ?'
+// args: ['Frank%']
+```
+
 We sometimes need to query a table based on a search filter with optional fields.
 The conditional where methods can help with this. Searching for archived users if
 `isArchived` filter is true.
