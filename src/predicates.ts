@@ -49,11 +49,21 @@ export function isNull(field: string): Predicate {
 }
 
 /**
- * `<field> IS NOT NULL`  check between a field and the given arg.
+ * `<field> IS NOT NULL` check between a field and the given arg.
  *
  * @param field The field name
  * @param arg The user given arg
  */
 export function isNotNull(field: string): Predicate {
 	return new Predicate(`${field} IS NOT NULL`);
+}
+
+/**
+ * `<field> is LIKE <arg>` check between a field and the string pattern
+ *
+ * @param field The field name
+ * @param pattern The user given pattern
+ */
+export function isLike(field: string, pattern: string): Predicate {
+	return new Predicate(`${field} LIKE ?`, pattern);
 }

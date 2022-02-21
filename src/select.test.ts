@@ -124,4 +124,19 @@ describe('select builder', () => {
 		expect(_stmt).toEqual(stmt);
 		expect(_args).toHaveLength(0);
 	});
+
+	it('accounts for all like clauses', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.whereIsLike('name', '%frank')
+			.whereIsLikeIf('email', '%frank%', false);
+
+		const stmt = 'SELECT * FROM users WHERE name LIKE ?';
+		const args = ['%frank'];
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toEqual(args);
+	});
 });

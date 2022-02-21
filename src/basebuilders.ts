@@ -59,7 +59,7 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 */
 	whereIsEqualIf(field: string, arg: unknown, check: boolean) : T {
 		if (check) {
-			this.whereIsEqual(field, arg);
+			return this.whereIsEqual(field, arg);
 		}
 		return this.getThis();
 	}
@@ -83,7 +83,7 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 */
 	whereIsNotEqualsIf(field: string, arg: unknown, check: boolean) : T {
 		if (check) {
-			this.whereIsNotEquals(field, arg);
+			return this.whereIsNotEquals(field, arg);
 		}
 		return this.getThis();
 	}
@@ -106,7 +106,7 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 */
 	whereIsNullIf(field: string, check: boolean) : T {
 		if (check) {
-			this.whereIsNull(field);
+			return this.whereIsNull(field);
 		}
 		return this.getThis();
 	}
@@ -129,7 +129,32 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 */
 	whereIsNotNullIf(field: string, check: boolean) : T {
 		if (check) {
-			this.whereIsNotNull(field);
+			return this.whereIsNotNull(field);
+		}
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a check for a specific pattern for the given field.
+	 *
+	 * @param field The field name
+	 * @param pattern The string pattern
+	 */
+	whereIsLike(field: string, pattern: string): T {
+		this.predicates.push(pr.isLike(field, pattern));
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a check for a specific pattern for the given field
+	 *
+	 * @param field The field name
+	 * @param pattern The string pattern
+	 * @param check The conditional check
+	 */
+	whereIsLikeIf(field: string, pattern: string, check: boolean): T {
+		if (check) {
+			return this.whereIsLike(field, pattern);
 		}
 		return this.getThis();
 	}
