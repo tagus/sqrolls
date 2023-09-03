@@ -90,6 +90,20 @@ const [ stmt, args ] = qb.toSQL();
 // args: []
 ```
 
+Selecting all users with ids in the given list.
+
+```js
+const qb = Select.builder()
+	.select('*')
+	.from('users')
+	.whereIn('id', 1, 2, 3, 4)
+
+const [ stmt, args ] = qb.toSQL();
+
+// stmt: 'SELECT * FROM users WHERE id IN (?,?,?,?)'
+// args: [1, 2, 3, 4]
+```
+
 ### inserts
 
 Inserting a single user.
