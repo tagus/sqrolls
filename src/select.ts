@@ -51,32 +51,32 @@ class Select extends PredicateBaseBuilder<Select> {
 	/**
 	 * Sets a limit on the select query
 	 *
-	 * @param val The result set limit
+	 * @param limit The result set limit
 	 */
-	limit(val: number) : Select {
-		this._limit = val;
+	limit(limit: number) : Select {
+		this._limit = limit;
 		return this;
 	}
 
 	/**
 	 * Sets an offset on the select query
 	 *
-	 * @param val The result set offset
+	 * @param offset The result set offset
 	 */
-	offset(val: number) : Select {
-		this._offset = val;
+	offset(offset: number) : Select {
+		this._offset = offset;
 		return this;
 	}
 
 	/**
 	 * Sets a limit on the select query if predicate is true
 	 *
-	 * @param val The result set limit
+	 * @param limit The result set limit
 	 * @param check The conditional check
 	 */
-	limitIf(val: number, check: boolean) : Select {
-		if (check) {
-			this.limit(val);
+	limitIf(limit: number|undefined, check: boolean) : Select {
+		if (limit !== undefined && check) {
+			this.limit(limit);
 		}
 		return this;
 	}
@@ -84,12 +84,12 @@ class Select extends PredicateBaseBuilder<Select> {
 	/**
 	 * Sets an offset on the select query
 	 *
-	 * @param val The result set offset
+	 * @param offset The result set offset
 	 * @param check The conditional check
 	 */
-	offsetIf(val: number, check: boolean) : Select {
-		if (check) {
-			this.offset(val);
+	offsetIf(offset: number|undefined, check: boolean) : Select {
+		if (offset !== undefined && check) {
+			this.offset(offset);
 		}
 		return this;
 	}
@@ -102,7 +102,9 @@ class Select extends PredicateBaseBuilder<Select> {
 		const args : unknown[] = [];
 		if (this.predicates.length > 0) {
 			stmt += ' WHERE ' + this.predicates.map(p => p.clause).join(' AND ');
-			const _args = this.predicates.filter(p => p.hasArg()).map(p => p.arg);
+			const _args = this.predicates
+				.filter(p => p.hasArg())
+				.flatMap(p => p.arg)
 			args.push(..._args);
 		}
 		if (this.orderByCol) {

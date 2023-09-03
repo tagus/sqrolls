@@ -139,4 +139,18 @@ describe('select builder', () => {
 		expect(_stmt).toEqual(stmt);
 		expect(_args).toEqual(args);
 	});
+
+	it('includes where in clause when specified', () => {
+		const qb = Select.builder()
+			.select('*')
+			.from('users')
+			.whereIn('id', 1, 2, 3, 4)
+
+		const stmt = 'SELECT * FROM users WHERE id IN (?,?,?,?)';
+		const args = [1, 2, 3, 4];
+
+		const [_stmt, _args] = qb.toSQL();
+		expect(_stmt).toEqual(stmt);
+		expect(_args).toEqual(args);
+	});
 });

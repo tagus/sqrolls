@@ -158,4 +158,15 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 		}
 		return this.getThis();
 	}
+
+	/**
+	 * Adds a set membership check
+	 *
+	 * @param field The field name
+	 * @param args The value list
+	 */
+	whereIn(field: string, ...args: unknown[]): T {
+		this.predicates.push(pr.isIn(field, args));
+		return this.getThis();
+	}
 }

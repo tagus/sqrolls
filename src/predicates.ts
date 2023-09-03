@@ -59,11 +59,22 @@ export function isNotNull(field: string): Predicate {
 }
 
 /**
- * `<field> is LIKE <arg>` check between a field and the string pattern
+ * `<field> LIKE <arg>` check between a field and the string pattern
  *
  * @param field The field name
  * @param pattern The user given pattern
  */
 export function isLike(field: string, pattern: string): Predicate {
 	return new Predicate(`${field} LIKE ?`, pattern);
+}
+
+/**
+ * `<field> IN (<args>)` check between a field and the given args
+ *
+ * @param field The field name
+ * @param args The set values
+ */
+export function isIn(field: string, args: unknown[]): Predicate {
+	const wildcards = args.map(() => '?').join(',');
+	return new Predicate(`${field} IN (${wildcards})`, args);
 }
