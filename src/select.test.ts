@@ -7,10 +7,12 @@ describe('select builder', () => {
 			.from('users')
 			.whereIsEqual('name', 'frank')
 			.whereIsEqual('email', 'warthog@wolfcola.com')
+			.whereIsLessThan('age', 50)
+			.whereIsGreaterThanOrEqualTo('age', 30)
 			.limit(5);
 
-		const stmt = 'SELECT id, name, email FROM users WHERE name = ? AND email = ? LIMIT 5';
-		const args = ['frank', 'warthog@wolfcola.com'];
+		const stmt = 'SELECT id, name, email FROM users WHERE name = ? AND email = ? AND age < ? AND age >= ? LIMIT 5';
+		const args = ['frank', 'warthog@wolfcola.com', 50, 30];
 
 		const [_stmt, _args] = qb.toSQL();
 		expect(_stmt).toEqual(stmt);
@@ -37,7 +39,10 @@ describe('select builder', () => {
 			.select('id', 'name', 'email')
 			.from('users')
 			.whereIsEqualIf('name', 'frank', false)
-			.whereIsEqual('email', 'warthog@wolfcola.com');
+			.whereIsLessThanIf('age', 50, false)
+			.whereIsGreaterThanOrEqualToIf('age', 30, false)
+			.whereIsEqual('email', 'warthog@wolfcola.com')
+			.orderByIf('age', false, false);
 
 		const stmt = 'SELECT id, name, email FROM users WHERE email = ?';
 		const args = ['warthog@wolfcola.com'];

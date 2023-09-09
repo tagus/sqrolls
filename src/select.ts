@@ -49,6 +49,20 @@ class Select extends PredicateBaseBuilder<Select> {
 	}
 
 	/**
+	 * Specifies the column to sort the queried row by
+	 *
+	 * @param col The column to order by
+	 * @param isDescending Whether to sort in descending order
+	 * @param check The conditional check
+	 */
+	orderByIf(col: string, isDescending=false, check: boolean) : Select {
+		if (check) {
+			this.orderBy(col, isDescending)
+		}
+		return this;
+	}
+
+	/**
 	 * Sets a limit on the select query
 	 *
 	 * @param limit The result set limit

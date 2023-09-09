@@ -44,7 +44,7 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 * Adds an equals between the given field and arg.
 	 *
 	 * @param field The field name
-	 * @param check The conditional check
+	 * @param arg The user provided arg
 	 */
 	whereIsEqual(field: string, arg: unknown) : T {
 		this.predicates.push(pr.isEqual(field, arg));
@@ -55,6 +55,7 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 * Adds an equals check only if the conditional check is true.
 	 *
 	 * @param field The field name
+	 * @param arg The user provided arg
 	 * @param check The conditional check
 	 */
 	whereIsEqualIf(field: string, arg: unknown, check: boolean) : T {
@@ -68,7 +69,7 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 * Adds a not equal check between the given field and arg.
 	 *
 	 * @param field The field name
-	 * @param check The conditional check
+	 * @param arg The user provided arg
 	 */
 	whereIsNotEquals(field: string, arg: unknown) : T {
 		this.predicates.push(pr.isNotEqual(field, arg));
@@ -79,11 +80,112 @@ export abstract class PredicateBaseBuilder<T extends PredicateBaseBuilder<T>> ex
 	 * Adds a not equal check only if the conditional check is true.
 	 *
 	 * @param field The field name
+	 * @param arg The user provided arg
 	 * @param check The conditional check
 	 */
 	whereIsNotEqualsIf(field: string, arg: unknown, check: boolean) : T {
 		if (check) {
 			return this.whereIsNotEquals(field, arg);
+		}
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a less than check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 */
+	whereIsLessThan(field: string, arg: unknown) : T {
+		this.predicates.push(pr.isLessThan(field, arg));
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a less than or equal to check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 */
+	whereIsLessThanOrEqualTo(field: string, arg: unknown) : T {
+		this.predicates.push(pr.isLessThanOrEqualTo(field, arg));
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a greater than check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 */
+	whereIsGreaterThan(field: string, arg: unknown) : T {
+		this.predicates.push(pr.isGreaterThan(field, arg));
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a greater than check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 */
+	whereIsGreaterThanOrEqualTo(field: string, arg: unknown) : T {
+		this.predicates.push(pr.isGreaterThanOrEqualTo(field, arg));
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a less than check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 * @param check The conditional check
+	 */
+	whereIsLessThanIf(field: string, arg: unknown, check: boolean) : T {
+		if (check) {
+			this.predicates.push(pr.isLessThan(field, arg));
+		}
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a less than or equal to check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 * @param check The conditional check
+	 */
+	whereIsLessThanOrEqualToIf(field: string, arg: unknown, check: boolean) : T {
+		if (check) {
+			this.predicates.push(pr.isLessThanOrEqualTo(field, arg));
+		}
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a greater than check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 * @param check The conditional check
+	 */
+	whereIsGreaterThanIf(field: string, arg: unknown, check: boolean) : T {
+		if (check) {
+			this.predicates.push(pr.isGreaterThan(field, arg));
+		}
+		return this.getThis();
+	}
+
+	/**
+	 * Adds a greater than check the given field and arg.
+	 *
+	 * @param field The field name
+	 * @param arg The user provided arg
+	 * @param check The conditional check
+	 */
+	whereIsGreaterThanOrEqualToIf(field: string, arg: unknown, check: boolean) : T {
+		if (check) {
+			this.predicates.push(pr.isGreaterThanOrEqualTo(field, arg));
 		}
 		return this.getThis();
 	}

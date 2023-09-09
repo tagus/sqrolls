@@ -39,6 +39,46 @@ export function isNotEqual(field: string, arg: unknown): Predicate {
 }
 
 /**
+ * `<field> < <arg>` check between a field and the given arg.
+ *
+ * @param field The field name
+ * @param arg The user given arg
+ */
+export function isLessThan(field: string, arg: unknown): Predicate {
+	return new Predicate(`${field} < ?`, arg);
+}
+
+/**
+ * `<field> <= <arg>` check between a field and the given arg.
+ *
+ * @param field The field name
+ * @param arg The user given arg
+ */
+export function isLessThanOrEqualTo(field: string, arg: unknown): Predicate {
+	return new Predicate(`${field} <= ?`, arg);
+}
+
+/**
+ * `<field> >= <arg>` check between a field and the given arg.
+ *
+ * @param field The field name
+ * @param arg The user given arg
+ */
+export function isGreaterThanOrEqualTo(field: string, arg: unknown): Predicate {
+	return new Predicate(`${field} >= ?`, arg);
+}
+
+/**
+ * `<field> > <arg>` check between a field and the given arg.
+ *
+ * @param field The field name
+ * @param arg The user given arg
+ */
+export function isGreaterThan(field: string, arg: unknown): Predicate {
+	return new Predicate(`${field} > ?`, arg);
+}
+
+/**
  * `<field> IS NULL` check between a field and the given arg.
  *
  * @param field The field name
